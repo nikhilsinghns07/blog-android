@@ -5,7 +5,6 @@ import {Card,Title,Button,TextInput,Text} from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ActivityIndicator } from 'react-native-paper';
 
-
 const Signup = ({navigation}) => {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
@@ -46,7 +45,7 @@ const Signup = ({navigation}) => {
                   );
                 return
             }
-            AsyncStorage.setItem('LOGIN_TOKEN',token)
+            AsyncStorage.setItem('SIGNUP_TOKEN',token)
             navigation.replace('Login')
         })
     }

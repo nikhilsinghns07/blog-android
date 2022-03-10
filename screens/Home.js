@@ -6,23 +6,14 @@ import {Card,Title,Text,Button} from 'react-native-paper'
 const Home = ({navigation}) => {
     
     return (
-        <ScrollView>
-            
+        <ScrollView>           
             <Card style={styles.card}>
                 <Card.Content>
                     <Title style={styles.title}>Welcome</Title>
-                    <Text style={styles.text}>Write something about your specality.😊</Text>
-
                     <View style={styles.topView}>
-                        <Text style={styles.text2}>Login to create a Post</Text> 
-                        <Button mode="contained" style={styles.btn} onPress={() => navigation.navigate('Login')}>Login</Button>
+                        <Text style={styles.text}>Write something</Text>
+                        <Button mode="contained" style={styles.btn} onPress={() => {navigation.navigate('CreatePost')}}>Create Post</Button>
                     </View>
-
-                    <View style={styles.view}>
-                        <Text style={styles.text3}>New? Create an Account</Text> 
-                        <Button mode="contained" style={styles.btn} onPress={() => navigation.navigate('Signup')}>Signup</Button>
-                    </View>
-
                 </Card.Content>
             </Card>
             <Blog />
@@ -38,7 +29,7 @@ const styles = StyleSheet.create({
         margin:10,padding:5,backgroundColor:'lightgrey',borderRadius:20
     },
     title : {padding:10,textAlign:'center',fontSize:18},
-    text : {textAlign:'center',color:'red',fontSize:15},
+    text : {textAlign:'center',color:'red',fontSize:16,},
     topView : {flexDirection:'row',justifyContent:'space-between',padding:20},
     text2 : {color:'blue',fontSize:15},
     btn : {borderRadius:10},

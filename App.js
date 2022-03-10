@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator } from '@react-navigation/native-stack'
 import Login from './screens/Login';
 import Signup from './screens/Signup';
-
+import CreatePost from './screens/CreatePost';
 
 export default function App() {
   const Stack = createNativeStackNavigator()
@@ -14,17 +14,16 @@ export default function App() {
     <NavigationContainer>
       <StatusBar style='auto'/>
       
-        <Stack.Navigator>
-
-        <Stack.Screen name="Home" component={Home} options={{
-            headerTitle : 'Home',
+        <Stack.Navigator>      
+        <Stack.Screen name="Login" component={Login} options={{
+            headerTitle : 'Login',
             headerStyle : {backgroundColor:'#f4511e'},
             headerTintColor : '#fff',
             headerTitleStyle : {fontWeight:'bold'}
         }}/>
-          
-        <Stack.Screen name="Login" component={Login} options={{
-            headerTitle : 'Login',
+
+        <Stack.Screen name="Home" component={Home} options={{
+            headerTitle : 'Home',
             headerStyle : {backgroundColor:'#f4511e'},
             headerTintColor : '#fff',
             headerTitleStyle : {fontWeight:'bold'}
@@ -35,6 +34,13 @@ export default function App() {
             headerStyle : {backgroundColor:'#f4511e'},
             headerTintColor : '#fff',
             headerTitleStyle : {fontWeight:'bold'}
+        }}/>
+
+        <Stack.Screen name="CreatePost" component={CreatePost} options={{
+          headerTitle : 'Create Post',
+          headerStyle : {backgroundColor:"#f4511e"},
+          headerTintColor: '#fff',
+          headerTitleStyle : {fontWeight:'bold'}
         }}/>
 
         </Stack.Navigator>

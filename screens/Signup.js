@@ -27,7 +27,7 @@ const Signup = ({navigation}) => {
                 "Content-Type" : "application/json"
             },
             body:JSON.stringify({
-                "name" : name,
+                "username" : name,
                 "email":email,
                 "password":password
             })
@@ -58,7 +58,7 @@ const Signup = ({navigation}) => {
                 <Card style={styles.card}>
                     <Card.Content>
                         <Title style={styles.title}>Create An Account</Title>
-                        <TextInput label="Name" mode="outlined"   onChangeText={(text) => {setName(text)}}/>
+                        <TextInput label="User Name" mode="outlined"   onChangeText={(text) => {setName(text)}}/>
                         <TextInput label="Email" mode="outlined"   onChangeText={(text) => {setEmail(text)}}/>
                         <TextInput label="Password" mode="outlined" secureTextEntry={true}    onChangeText={(text) => {setPassword(text)}} />
                         <Button style={styles.btn} mode="contained" color="yellow" onPress={() => signup()}>SignUp</Button>

@@ -4,6 +4,27 @@ import { ScrollView,KeyboardAvoidingView,StyleSheet, Alert, ActivityIndicator} f
 import {Card,Title,Button,TextInput,Text} from 'react-native-paper'
 
 const Login = ({navigation}) => {
+    const [loginToken,setLoginToken] = useState(false)
+    
+    const adminLogin = async () => {
+        let keys = []
+        try {
+            keys = await AsyncStorage.getAllKeys()
+        } catch(e) {
+        }
+        keys.forEach(el => {
+            if(el == 'LOGIN_TOKEN'){
+                setLoginToken(true)
+            }
+        })
+        if(loginToken == false){
+            navigation.navigate('Login')
+        }
+        if(loginToken == true){
+            navigation.replace('Home')
+        }
+    }
+    adminLogin()
 
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
@@ -11,7 +32,7 @@ const Login = ({navigation}) => {
 
     let error , token
 
-    const login = () => {
+    const login =  async () => {
 
         if(!email || !password) {
             Alert.alert('Enter Credentials')
@@ -41,7 +62,11 @@ const Login = ({navigation}) => {
                 )
                 return
             }
-            
+            try{
+               AsyncStorage.setItem('LOGIN_TOKEN',token)
+            }catch(e){
+                Alert.alert(e)
+            }
             navigation.replace('Home')
         })
     }

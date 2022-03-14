@@ -3,13 +3,10 @@ import { ScrollView,View,StyleSheet } from 'react-native'
 
 import {Card,Title,Text,Button} from 'react-native-paper'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
-import Blog from '../components/Blog'
+import Api from '../components/Api'
 
 const Home = ({navigation}) => {
-    const [posts, setPosts] = useState({})
-    const [fetching,setFetching] = useState(true)
-
+    
     const logout = () => {
         const token = AsyncStorage.getItem('LOGIN_TOKEN')
         if(token == null){
@@ -20,7 +17,7 @@ const Home = ({navigation}) => {
     }
     
     return (
-        <ScrollView>           
+        <ScrollView style={{backgroundColor:'black'}}>            
             <Card style={styles.card}> 
                 <Card.Content>
                     <Title style={styles.title}>Welcome</Title>
@@ -31,7 +28,7 @@ const Home = ({navigation}) => {
                 </Card.Content>
                 <Button style={{flexDirection:'row',justifyContent:'flex-end'}} color='red' onPress={() => logout()}>Logout</Button>
             </Card>
-            <Blog />
+            <Api />
         </ScrollView>
     )
 }

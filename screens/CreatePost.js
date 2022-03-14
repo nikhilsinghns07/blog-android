@@ -29,7 +29,6 @@ const CreatePost = ({navigation}) => {
             })
         }).then(res => res.json())
         .then(data => {
-            console.log(data)
             let error = data.error
             setIsLoading(false)
 

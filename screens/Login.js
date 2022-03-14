@@ -77,7 +77,7 @@ const Login = ({navigation}) => {
             <Card style={styles.card}>
                 <Card.Content>
                     <Title style={styles.title}>Create An Account</Title>
-                    
+                    <Text style={styles.spinner}>{isLoading ? <ActivityIndicator size="large" color="#FFA500"/> : null}</Text>                
                     <TextInput label="Email" mode="outlined"   onChangeText={(text) => {setEmail(text)}}/>
                     <TextInput label="Password" mode="outlined" secureTextEntry={true}    onChangeText={(text) => {setPassword(text)}} />
                     <Button style={styles.btn} mode="contained" color="yellow" onPress={() => login()} >Login</Button>                

@@ -1,7 +1,7 @@
-import React ,{ useState } from 'react'
-import { useEffect } from 'react'; 
-import { Alert, ScrollView,View} from 'react-native'
-import {Card,Title,Paragraph,Text,Button} from 'react-native-paper'
+import React from 'react'
+
+import {  ScrollView} from 'react-native'
+import {Card,Title,Paragraph} from 'react-native-paper'
 
 const Blog = ({data}) => {
     

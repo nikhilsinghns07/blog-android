@@ -4,21 +4,12 @@ import {  ActivityIndicator, ScrollView ,StyleSheet ,Text,RefreshControl} from '
 import Blog from './Blog'
 
 const Api = () => {
-    const [refreshing,setRefreshing] = useState(false)
+    
     const [posts , setPosts] = useState([])
     const [isLoading,setIsLoading] = useState(false)
-
-    const wait = (timeout) => {
-        return new Promise(resolve => setTimeout(resolve, timeout));
-    }
-
-    const onRefresh = useCallback(() => {
-        setRefreshing(true);
-        wait(5000).then(() => setRefreshing(false));
-      }, []);
+                             
     
-
-    const fetchData = () => {
+    const fetchData = async () => {
         setIsLoading(true)
         fetch("https://blogbackend7.herokuapp.com/getPost")
         .then((res) => res.json()).then(data => {
@@ -29,11 +20,10 @@ const Api = () => {
 
     useEffect(() => {
         fetchData()
-        return setPosts([])
     }, [])
     
     return (
-        <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
+        <ScrollView >
             <Text style={styles.spinner}>{isLoading ? <ActivityIndicator size="large" color="#FFA500"/> : null}</Text>                
             <Blog data={posts}/>
         </ScrollView>

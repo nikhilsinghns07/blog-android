@@ -8,7 +8,6 @@ const Api = () => {
     const [posts , setPosts] = useState([])
     const [isLoading,setIsLoading] = useState(false)
                              
-    
     const fetchData = async () => {
         setIsLoading(true)
         fetch("https://blogbackend7.herokuapp.com/getPost")

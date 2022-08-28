@@ -1,12 +1,12 @@
 import React from 'react'
-
 import {Text} from 'react-native'
-const CreatePost = () => {
+
+const UserPost = () => {
     return (
         <React.Fragment>
-            <Text>CreatePost Page</Text>
+            <Text>UserPost Page</Text>
         </React.Fragment>
     )
 }
 
-export default CreatePost
+export default UserPost

@@ -1,49 +1,49 @@
-import React, { useState,useEffect } from 'react'
-import { ScrollView } from 'react-native';
-import { Avatar, Button, Card, Title, Paragraph,Text,Divider } from 'react-native-paper';
+import React,{useState} from 'react'
+import { ScrollView,View,StyleSheet } from 'react-native'
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+import {Card,Title,Text,Button} from 'react-native-paper'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import Api from '../components/Api'
 
-const Home = () => {
-    const [posts,setPosts] = useState([])
-    const [loading,setLoading] = useState(false)
-    const [error,setError] = useState(null)
-
-    const fetchPosts = () => {
-        setLoading(true)
-        fetch('https://api-nikhilsingh7.herokuapp.com/getPost')
-        .then((res) => res.json())
-        .then(data => {
-            setPosts(data.posts)
-            setLoading(false)
-        }).catch(err => {
-            console.log(err)
-            setError('Some Error Occured')
-        })
-        
+const Home = ({navigation}) => {
+    
+    const logout = () => {
+        const token = AsyncStorage.getItem('LOGIN_TOKEN')
+        if(token == null){
+            Alert.alert("Not LoggedIn")  
+        }
+        AsyncStorage.removeItem('LOGIN_TOKEN')
+        navigation.replace('Login')
     }
-    useEffect(() => {
-        fetchPosts()
-    }, [])
-
+    
     return (
-        <ScrollView>
-            
-                {posts?.map((post,idx) =>
-                    <Card key={idx} style={{margin:10,padding:5,backgroundColor:'#8bc6f0',borderRadius:20}}>
-                        <Card.Title title={post.title} subtitle={post.author} left={LeftContent} />
-                        <Card.Content>
-                            <Card.Cover source={{uri: post?.imageUrl || 'https://source.unsplash.com/random'}} />
-                            <Paragraph  style={{padding:10,fontWeight:'600',fontSize:20}}>{post.content}</Paragraph>
-                            <Text variant="titleMedium" style={{padding:10}}>{new Date(post.date).toDateString()}</Text>
-                        </Card.Content>
-                        <Divider />
-                    </Card>
-                ) 
-                || <Text>No Post Found</Text>}
-                
+        <ScrollView style={{backgroundColor:'black'}}>            
+            <Card style={styles.card}> 
+                <Card.Content>
+                    <Title style={styles.title}>Welcome</Title>
+                    <View style={styles.topView}>
+                        <Text style={styles.text}>Write something</Text>
+                        <Button mode="contained" style={styles.btn} onPress={() => {navigation.navigate('CreatePost')}}>Create Post</Button>
+                    </View>
+                </Card.Content>
+                <Button style={{flexDirection:'row',justifyContent:'flex-end'}} color='red' onPress={() => logout()}>Logout</Button>
+            </Card>
+            <Api />
         </ScrollView>
     )
 }
 
 export default Home
+
+const styles = StyleSheet.create({
+    card : {
+        margin:10,padding:5,backgroundColor:'lightgrey',borderRadius:20
+    },
+    title : {padding:10,textAlign:'center',fontSize:18},
+    text : {textAlign:'center',color:'#ff8000',fontSize:16,},
+    topView : {flexDirection:'row',justifyContent:'space-between',padding:20},
+    text2 : {color:'blue',fontSize:15},
+    btn : {borderRadius:10},
+    view : {flexDirection:'row',justifyContent:'space-between',padding:10},
+    text3 : {color:'blue',fontSize:15}
+})

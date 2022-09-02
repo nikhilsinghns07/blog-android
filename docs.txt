@@ -1,0 +1,2 @@
+Signup Done with Spinner and Navigation 
+User will be redirected to create a post if logged In.
